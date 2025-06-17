@@ -10,18 +10,19 @@ terraform {
 #terraform provider
 provider "azurerm" {
   features {}
+  skip_provider_registration = true
 }
 
 #Resource group Module 
 module "resource_group" {
-  source      = "./modules/resource_group"
+  source      = "./Modules/Resource_group"
   rg_name     = var.rg_name
   location    = var.location
 }
 
 #Virtual network one Module
 module "vnet1" {
-  source              = "./modules/vnet"
+  source              = "./Modules/VirtualNetwork"
   vnet_name           = var.vnet1_name
   address_space       = var.vnet1_address_space
   subnet_prefixes     = var.vnet1_subnet_prefixes
@@ -32,7 +33,7 @@ module "vnet1" {
 
 #Virtual network two module
 module "vnet2" {
-  source              = "./modules/vnet"
+  source              = "./Modules/VirtualNetwork"
   vnet_name           = var.vnet2_name
   address_space       = var.vnet2_address_space
   subnet_prefixes     = var.vnet2_subnet_prefixes
